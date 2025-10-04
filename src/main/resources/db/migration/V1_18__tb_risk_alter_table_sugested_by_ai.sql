@@ -1,0 +1,2 @@
+ALTER TABLE tb_risk
+ADD COLUMN suggested_by_ai BOOLEAN DEFAULT FALSE;

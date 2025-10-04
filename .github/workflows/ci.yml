@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+permissions:
+  contents: read
+
+jobs:
+  maven:
+    name: Maven Build & Test (Java 21)
+    runs-on: ubuntu-latest
+
+    # Descomente este bloco se você precisa de PostgreSQL rodando nos testes (sem Testcontainers)
+    # services:
+    #   postgres:
+    #     image: postgres:16
+    #     env:
+    #       POSTGRES_DB: ngo
+    #       POSTGRES_USER: ngo
+    #       POSTGRES_PASSWORD: ngo
+    #     ports:
+    #       - 5432:5432
+    #     options: >-
+    #       --health-cmd="pg_isready -U ngo -d ngo"
+    #       --health-interval=10s
+    #       --health-timeout=5s
+    #       --health-retries=5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Make mvnw executable (Linux)
+        run: chmod +x mvnw
+
+      - name: Resolve & Build
+        run: ./mvnw -B -ntp -DskipTests clean package
+
+      - name: Run Tests
+        env:
+          # Ajuste as variáveis conforme seu application.yml/properties (se necessário)
+          # SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/ngo
+          # SPRING_DATASOURCE_USERNAME: ngo
+          # SPRING_DATASOURCE_PASSWORD: ngo
+          MAVEN_OPTS: -Xmx1g
+        run: ./mvnw -B -ntp verify
+
+      # (Opcional) Publicar relatório de testes como artifact
+      - name: Upload surefire reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maven-surefire-reports
+          path: |
+            **/target/surefire-reports/*.xml
+            **/target/failsafe-reports/*.xml
+          if-no-files-found: ignore

@@ -1,0 +1,57 @@
+✅ Opção 1: Acessar o container e dropar via psql
+Abra um terminal no container:
+
+bash
+Copy
+Edit
+docker exec -it oak-shield-db bash
+Acesse o PostgreSQL com o usuário root:
+
+bash
+Copy
+Edit
+psql -U postgres
+Liste os bancos existentes (opcional):
+psql -U postgres -d oak-shield-db
+
+sql
+Copy
+Edit
+\l
+Drop o banco desejado (por exemplo oak-shield-db):
+
+sql
+Copy
+Edit
+DROP DATABASE "oak-shield-db";
+⚠️ O banco de dados não pode estar em uso. Se ele estiver em uso, feche a conexão antes ou mate o processo.
+
+Saia:
+
+sql
+Copy
+Edit
+\q
+exit
+✅ Opção 2: Rodar um comando direto no container
+Se quiser rodar o DROP DATABASE direto da sua máquina:
+
+bash
+Copy
+Edit
+docker exec -u postgres ngo-ripple-impact-api-db-postgres psql -c 'DROP DATABASE "ngo_ripple_impact_db";'
+
+docker exec -u postgres ngo-ripple-impact-api-db psql -c 'DROP DATABASE "ngo_ripple_impact_db";'
+docker exec -u postgresngo-ripple-impact-api-db psql -c 'CREATE DATABASE "ngo_ripple_impact_db";'
+✅ Opção 3: Deletar volume e subir do zero (limpar tudo)
+Se quiser remover completamente o volume de dados e recriar o banco do zero:
+
+bash
+Copy
+Edit
+docker-compose down -v
+docker-compose up -d
+Isso apaga os dados persistidos em ./pgdata.
+
+Para listar as tabelas do banco conectado, use apenas:
+psql -U postgres -d ngo_ripple_impact_db

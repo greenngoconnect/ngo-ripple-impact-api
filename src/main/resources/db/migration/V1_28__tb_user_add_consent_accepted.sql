@@ -1,0 +1,1 @@
+ALTER TABLE tb_user ADD consent_accepted BOOLEAN DEFAULT FALSE;

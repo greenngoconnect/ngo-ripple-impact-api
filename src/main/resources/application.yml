@@ -1,0 +1,183 @@
+server:
+  port: 9999
+  servlet:
+    context-path: /api
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: ngo-ripple-impact-api
+  profiles:
+    active: dev
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    connectionTimeout: 30000
+    idleTimeout: 30000
+    max-open-prepared-statements: 250
+    maxLifetime: 2000000
+    maximumPoolSize: 5
+    minimumIdle: 3
+    pool-prepared-statements: true
+    poolName: SpringBootHikariCP
+    hikari:
+      connection-timeout: '60000'
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    locations: classpath:db/migration, classpath:db/callback
+    placeholder-replacement: false
+  freemarker:
+    # procura no classpath e no filesystem
+    template-loader-path:
+      - classpath:/templates/
+      - file:/app/templates/
+    suffix: .ftl
+    charset: UTF-8
+    # opcional: não falhar se não encontrar no classpath
+    check-template-location: false
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+---
+spring:
+  application:
+    name: ngo-ripple-impact-api
+  profiles:
+    active: hom
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    connectionTimeout: 30000
+    idleTimeout: 30000
+    max-open-prepared-statements: 250
+    maxLifetime: 2000000
+    maximumPoolSize: 5
+    minimumIdle: 3
+    pool-prepared-statements: true
+    poolName: SpringBootHikariCP
+    hikari:
+      connection-timeout: '60000'
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    locations: classpath:db/migration, classpath:db/callback
+    placeholder-replacement: false
+  freemarker:
+    # procura no classpath e no filesystem
+    template-loader-path:
+      - classpath:/templates/
+      - file:/app/templates/
+    suffix: .ftl
+    charset: UTF-8
+    # opcional: não falhar se não encontrar no classpath
+    check-template-location: false
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+---
+spring:
+  application:
+    name: ngo-ripple-impact-api
+  profiles:
+    active: prod
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    connectionTimeout: 30000
+    idleTimeout: 30000
+    max-open-prepared-statements: 250
+    maxLifetime: 2000000
+    maximumPoolSize: 5
+    minimumIdle: 3
+    pool-prepared-statements: true
+    poolName: SpringBootHikariCP
+    hikari:
+      connection-timeout: '60000'
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    validate-on-migrate: true
+    locations: classpath:db/migration, classpath:db/callback
+    placeholder-replacement: false
+  freemarker:
+    # procura no classpath e no filesystem
+    template-loader-path:
+      - classpath:/templates/
+      - file:/app/templates/
+    suffix: .ftl
+    charset: UTF-8
+    # opcional: não falhar se não encontrar no classpath
+    check-template-location: false
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS}
+
+openai:
+  enabled: true
+  api:
+    key: ${OPENAI_API_KEY}
+  model: gpt-4o-mini
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+storage:
+  local:
+    # diretório no filesystem onde os arquivos serão gravados
+    base-dir: ${FILES_BASE_DIR:/var/app/files}
+
+application:
+  security:
+    jwt:
+      secret-key: ${SECURITY_JWT_SECRET_KEY}
+      expiration: 864000000 # 10 day
+      refresh-token:
+        expiration: 6048000000 # 70 days
+
+logging:
+  level:
+    org.springframework.cloud.config.client: DEBUG
+    io.github.resilience4j: INFO
+    br.com.nttdata.nttskillboost.employeeservice.infrastructure.resilience.Resilience4jEventLogger: DEBUG
+    br.com.nttdata.nttskillboost.employeeservice.adapters.api.controller.EmployeeController: DEBUG
+    br.com.nttdata.nttskillboost.courseservice: DEBUG
+    io.github.resilience4j.retry: DEBUG
+    io.github.resilience4j.circuitbreaker: DEBUG
+    io.github.resilience4j.bulkhead: DEBUG
+    io.github.resilience4j.ratelimiter: DEBUG

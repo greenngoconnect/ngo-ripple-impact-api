@@ -1,0 +1,60 @@
+taskkill /F /PID 1234
+
+        netstat -an | find "9999"
+
+
+		docker build -t ngo-ripple-impact-api .
+
+		docker run --env-file .env -p 9991:9991 --name ngo-ripple-impact-api-container ngo-ripple-impact-api
+
+		docker run --env-file .env -p 9991:9991 --name ngo-ripple-impact-api-container ngo-ripple-impact-api
+
+		aws ecr create-repository --repository-name ngo-ripple-impact --region us-east-1
+
+		docker run --env-file .env -p 9991:9991 --name ngo-ripple-impact-api-container ngo-ripple-impact-api
+
+		aws ecr create-repository --repository-name ngo-ripple-impact --region us-east-1
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <ID>.dkr.ecr.us-east-1.amazonaws.com
+
+docker build -t ngo-ripple-impact-api .
+
+docker tag ngo-ripple-impact-api:latest <ID>.dkr.ecr.us-east-1.amazonaws.com/ngo-ripple-impact-api:latest
+
+docker push <ID>.dkr.ecr.us-east-1.amazonaws.com/ngo-ripple-impact-api:latest
+----
+docker build -t ngo-ripple-impact-api .
+aws ecr create-repository --repository-name ngo-ripple-impact-api --region us-east-1
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <ID>.dkr.ecr.us-east-1.amazonaws.com
+docker tag ngo-ripple-impact-api:latest <ID>.dkr.ecr.us-east-1.amazonaws.com/ngo-ripple-impact-api:latest
+docker push <ID>.dkr.ecr.us-east-1.amazonaws.com/ngo-ripple-impact-api:latest
+
+ aws ecr list-images --repository-name ngo-ripple-impact-api --region us-east-1
+docker rm -f oak-shield-api
+docker rm -f oak-shield-db-postgres
+docker rm -f oak-shield-nginx
+
+---
+# Parar os containers primeiro
+docker-compose down
+
+# Deletar o volume específico do PostgreSQL
+docker volume rm infra-local_pgdata
+
+# Ou forçar a remoção
+docker volume rm -f infra-local_pgdata
+
+# Ou usar o docker-compose para remover volumes
+docker-compose down -v
+
+docker volume rm $(docker volume ls -q) -f
+
+OPENAI_API_KEY=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
+SECURITY_JWT_SECRET_KEY=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+
+docker exec -it oak-shield-api2 sh -lc 'ls -R /app/templates/policies'
+
+2.2.1 Solução
+●	Objetivo da Sprint 2:
+●	Evidência de Planejameto:
+●	Evidência da execução de cada requisito:
