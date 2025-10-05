@@ -1,11 +1,14 @@
 services:
   postgres:
     image: postgres:16
-    container_name: oak-shield-db
+    container_name: ngp-ripple-impact-db
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      LANG: en_US.utf8
+      LC_COLLATE: en_US.utf8
+      LC_CTYPE: en_US.utf8
     ports:
       - "5434:5432"
     volumes:
@@ -19,7 +22,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: oak-shield-pgadmin
+    container_name: ngp-ripple-impact-pgadmin
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
