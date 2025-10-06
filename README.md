@@ -53,3 +53,6 @@ curl -X POST http://localhost:8080/api/subject-requests \
 -H 'Content-Type: application/json' \
 -d '{"dataSubject":{"id":"<UUID_DO_TITULAR>"},"type":"ACCESS","notes":"Quero cópia de todos os dados."}'
 # ngo-ripple-impact-api
+
+
+https://ripple-impact-net.lovable.app/dashboard
