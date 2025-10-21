@@ -8,7 +8,7 @@ CREATE TABLE tb_ngo_detail (
    address VARCHAR(255) NOT NULL,
    mission TEXT,
    vision TEXT,
-   values TEXT,
+   values_description TEXT,
    status varchar(255) NOT NULL,
    create_by varchar(255) NOT NULL DEFAULT 'system_user',
    created_date timestamp DEFAULT CURRENT_DATE,

@@ -60,5 +60,6 @@ public class NgoDetail extends AuditDomain {
     private String vision;
 
     @Schema(description = "Valores da ONG", example = "Sustentabilidade, Educação, Comunidade")
+    @Column(name = "values_description")
     private String values;
 }

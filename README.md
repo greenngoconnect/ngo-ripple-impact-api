@@ -56,3 +56,44 @@ curl -X POST http://localhost:8080/api/subject-requests \
 
 
 https://ripple-impact-net.lovable.app/dashboard
+
+==============================
+java -jar wiremock-standalone.jar \
+--port 9090 \
+--verbose \
+--extensions org.wiremock.extension.responsetemplating.ResponseTemplateTransformer
+
+
+==============================
+mvn exec:java -Dexec.mainClass=com.github.tomakehurst.wiremock.standalone.WireMockServerRunner \
+-Dexec.args="--port 9090 --verbose --root-dir src/test/resources/wiremock \
+--extensions org.wiremock.extension.responsetemplating.ResponseTemplateTransformer"
+
+Ou, se tiver configurado o <execution> no plugin, apenas:
+mvn pre-integration-test
+
+Testar localmente
+curl -X GET http://localhost:9090/v1/ngos | jq .
+
+
+====
+💡 Dica bônus: subir WireMock junto aos testes de integração
+
+Você pode criar um perfil Maven chamado wiremock e iniciar o servidor antes dos testes:
+
+<profiles>
+  <profile>
+    <id>wiremock</id>
+    <activation><activeByDefault>true</activeByDefault></activation>
+    <build>
+      <plugins>
+        <!-- Aqui o exec-maven-plugin mostrado acima -->
+      </plugins>
+    </build>
+  </profile>
+</profiles>
+
+
+E rodar:
+
+mvn test -Pwiremock

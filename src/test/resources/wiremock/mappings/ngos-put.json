@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/ngos/([0-9a-fA-F-]{36})",
+    "headers": {
+      "Content-Type": { "matches": "application/json.*" }
+    },
+    "bodyPatterns": [
+      { "matchesJsonPath": "$.name" },
+      { "matchesJsonPath": "$.email" }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "name": "{{jsonPath request.body '$.name'}}",
+      "email": "{{jsonPath request.body '$.email'}}",
+      "status": "ACTIVE"
+    },
+    "transformers": ["response-template"]
+  }
+}

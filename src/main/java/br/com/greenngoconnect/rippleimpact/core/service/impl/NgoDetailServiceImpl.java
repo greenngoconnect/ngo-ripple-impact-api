@@ -3,7 +3,6 @@ package br.com.greenngoconnect.rippleimpact.core.service.impl;
 import br.com.greenngoconnect.rippleimpact.core.domain.ngo.NgoDetail;
 import br.com.greenngoconnect.rippleimpact.core.repository.NgoDetailRepository;
 import br.com.greenngoconnect.rippleimpact.core.service.NgoDetailService;
-import br.com.greenngoconnect.rippleimpact.exception.ResourceFoundException;
 import br.com.greenngoconnect.rippleimpact.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
