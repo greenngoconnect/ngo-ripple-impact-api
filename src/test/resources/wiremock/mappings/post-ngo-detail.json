@@ -1,0 +1,31 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/ngo-details",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.ngo.id"
+      },
+      {
+        "matchesJsonPath": "$.responsibleName"
+      },
+      {
+        "matchesJsonPath": "$.responsibleEmail"
+      },
+      {
+        "matchesJsonPath": "$.responsiblePhone"
+      },
+      {
+        "matchesJsonPath": "$.address"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "/v1/ngo-details/11111111-1111-1111-1111-111111111111"
+    },
+    "bodyFileName": "ngo-detail-created.json"
+  }
+}

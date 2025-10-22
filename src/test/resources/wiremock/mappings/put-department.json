@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/departments/[0-9a-fA-F-]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "name": "{{#jsonPath request.body '$.name'}}{{.}}{{/jsonPath}}",
+      "ngo": {
+        "id": "{{#jsonPath request.body '$.ngo.id'}}{{.}}{{/jsonPath}}"
+      }
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

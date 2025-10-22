@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/auth/logout"
+  },
+  "response": {
+    "status": 204,
+    "headers": {
+      "Set-Cookie": "refresh_token=; Max-Age=0; HttpOnly; Secure; Path=/, access_token=; Max-Age=0; HttpOnly; Secure; Path=/"
+    }
+  }
+}

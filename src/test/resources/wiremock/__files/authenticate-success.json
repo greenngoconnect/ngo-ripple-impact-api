@@ -1,0 +1,7 @@
+{
+  "userId": "11111111-1111-1111-1111-111111111111",
+  "email": "user@greenngo.org",
+  "role": "USER",
+  "accessToken": "ACCESS_TOKEN_SAMPLE",
+  "refreshToken": "REFRESH_TOKEN_SAMPLE"
+}

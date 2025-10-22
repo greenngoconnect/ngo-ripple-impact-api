@@ -1,0 +1,28 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/ngo-details/[0-9a-fA-F-]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "ngo": {
+        "id": "{{#jsonPath request.body '$.ngo.id'}}{{.}}{{/jsonPath}}"
+      },
+      "responsibleName": "{{#jsonPath request.body '$.responsibleName'}}{{.}}{{/jsonPath}}",
+      "responsibleEmail": "{{#jsonPath request.body '$.responsibleEmail'}}{{.}}{{/jsonPath}}",
+      "responsiblePhone": "{{#jsonPath request.body '$.responsiblePhone'}}{{.}}{{/jsonPath}}",
+      "address": "{{#jsonPath request.body '$.address'}}{{.}}{{/jsonPath}}",
+      "mission": "{{#jsonPath request.body '$.mission'}}{{.}}{{/jsonPath}}",
+      "vision": "{{#jsonPath request.body '$.vision'}}{{.}}{{/jsonPath}}",
+      "values": "{{#jsonPath request.body '$.values'}}{{.}}{{/jsonPath}}"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

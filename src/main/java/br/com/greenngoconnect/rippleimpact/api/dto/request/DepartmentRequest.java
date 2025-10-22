@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,4 +19,6 @@ public class DepartmentRequest implements Serializable {
 
     @Schema(description = "Nome do ativo", example = "Servidor de Banco de Dados")
     private String name;
+
+    private UUID mgoId;
 }

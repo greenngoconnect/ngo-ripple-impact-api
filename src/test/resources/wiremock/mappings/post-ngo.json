@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/ngos",
+    "bodyPatterns": [
+      { "matchesJsonPath": "$.name" },
+      { "matchesJsonPath": "$.email" },
+      { "matchesJsonPath": "$.areaOfExpertise" }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "/v1/ngos/11111111-1111-1111-1111-111111111111"
+    },
+    "bodyFileName": "ngo-created.json"
+  }
+}

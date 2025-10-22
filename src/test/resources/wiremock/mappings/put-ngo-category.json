@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/ngo-categories/[0-9a-fA-F-]+",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.name"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "name": "{{jsonPath request.body '$.name'}} (updated)"
+    },
+    "transformers": ["response-template"]
+  }
+}

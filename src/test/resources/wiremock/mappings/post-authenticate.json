@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/auth/authenticate",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.email"
+      },
+      {
+        "matchesJsonPath": "$.password"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Set-Cookie": "refresh_token=REFRESH_TOKEN_SAMPLE; HttpOnly; Secure; Path=/; SameSite=Strict"
+    },
+    "bodyFileName": "authenticate-success.json"
+  }
+}

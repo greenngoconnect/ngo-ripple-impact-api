@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/ngo-social-networks/[0-9a-fA-F-]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "ngo": {
+        "id": "{{#jsonPath request.body '$.ngo.id'}}{{.}}{{/jsonPath}}"
+      },
+      "linkedin": "{{#jsonPath request.body '$.linkedin'}}{{.}}{{/jsonPath}}",
+      "twitterX": "{{#jsonPath request.body '$.twitterX'}}{{.}}{{/jsonPath}}",
+      "instagram": "{{#jsonPath request.body '$.instagram'}}{{.}}{{/jsonPath}}",
+      "website": "{{#jsonPath request.body '$.website'}}{{.}}{{/jsonPath}}"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

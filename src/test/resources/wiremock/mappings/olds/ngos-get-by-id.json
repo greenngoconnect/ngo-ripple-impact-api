@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/ngos/([0-9a-fA-F-]{36})"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "name": "ONG Exemplo",
+      "email": "exemplo@ong.org",
+      "status": "ACTIVE"
+    },
+    "transformers": ["response-template"]
+  }
+}

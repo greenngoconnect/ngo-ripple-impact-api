@@ -155,6 +155,39 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock-standalone</artifactId>
+            <version>3.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.2.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -192,6 +225,83 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+
+                <!-- (opcional) exclusão no agente para nem instrumentar -->
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals><goal>prepare-agent</goal></goals>
+                        <configuration>
+                            <excludes>
+                                <!-- VM notation ou com /** funciona -->
+                                <exclude>br/com/greenngoconnect/rippleimpact/filter/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/config/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/commons/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/utils/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/exception/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/api/dto/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/api/handlers/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/api/mapper/**</exclude>
+                                <exclude>br/com/greenngoconnect/rippleimpact/core/domain/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+
+                    <!-- exclusão no relatório (é aqui que afeta o site HTML) -->
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals><goal>report</goal></goals>
+                        <configuration>
+                            <excludes>
+                                <!-- use caminho de .class -->
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/filter/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/config/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/commons/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/utils/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/exception/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/api/dto/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/api/handlers/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/api/mapper/**/*.class</exclude>
+                                <exclude>**/br/com/greenngoconnect/rippleimpact/core/domain/**/*.class</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <includeProjectDependencies>true</includeProjectDependencies>
+                    <classpathScope>test</classpathScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-wiremock</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>wiremock.Run</mainClass>
+                            <arguments>
+                                <argument>- -port</argument>
+                                <argument>9090</argument>
+                                <argument>- -verbose</argument>
+                                <argument>- -root-dir</argument>
+                                <argument>${project.basedir}/src/test/resources/wiremock</argument>
+                                <argument>- -local-response-templating</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin-->
         </plugins>
     </build>
 

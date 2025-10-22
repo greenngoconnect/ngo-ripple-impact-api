@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/ngos",
+    "headers": {
+      "Content-Type": { "matches": "application/json.*" }
+    },
+    "bodyPatterns": [
+      { "matchesJsonPath": "$.name" },
+      { "matchesJsonPath": "$.email" },
+      { "matchesJsonPath": "$.phone" },
+      { "matchesJsonPath": "$.companyId" },
+      { "matchesJsonPath": "$.description" },
+      { "matchesJsonPath": "$.fantasyName" },
+      { "matchesJsonPath": "$.ngoStatus" },
+      { "matchesJsonPath": "$.ngoCategoryId" }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "http://localhost:9090/v1/ngos/{{randomValue type='UUID' key='ngoId'}}"
+    },
+    "jsonBody": {
+      "id": "{{randomValue type='UUID' key='ngoId'}}",
+      "name": "{{jsonPath request.body '$.name'}}",
+      "email": "{{jsonPath request.body '$.email'}}",
+      "phone": "{{jsonPath request.body '$.phone'}}",
+      "companyId": "{{jsonPath request.body '$.companyId'}}",
+      "description": "{{jsonPath request.body '$.description'}}",
+      "fantasyName": "{{jsonPath request.body '$.fantasyName'}}",
+      "ngoStatus": "{{jsonPath request.body '$.ngoStatus'}}",
+      "ngoCategoryId": "{{jsonPath request.body '$.ngoCategoryId'}}"
+    },
+    "transformers": ["response-template"]
+  }
+}

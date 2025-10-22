@@ -49,7 +49,7 @@ docker-compose down -v
 
 docker volume rm $(docker volume ls -q) -f
 
-OPENAI_API_KEY=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
+OPENAI_API_KEY=sk-...
 SECURITY_JWT_SECRET_KEY=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
 
 docker exec -it oak-shield-api2 sh -lc 'ls -R /app/templates/policies'
