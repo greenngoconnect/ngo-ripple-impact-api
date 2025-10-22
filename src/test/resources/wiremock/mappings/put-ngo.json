@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/ngos/[0-9a-fA-F-]+",
+    "bodyPatterns": [
+      { "matchesJsonPath": "$.name" }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "name": "{{jsonPath request.body '$.name'}} (updated)",
+      "email": "{{jsonPath request.body '$.email'}}",
+      "cnpj": "{{jsonPath request.body '$.cnpj'}}",
+      "areaOfExpertise": "{{jsonPath request.body '$.areaOfExpertise'}}"
+    },
+    "transformers": ["response-template"]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/users/00000000-0000-0000-0000-000000000000"
+  },
+  "response": {
+    "status": 404,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "timestamp": "{{now}}",
+      "status": 404,
+      "error": "Not Found",
+      "message": "User not found",
+      "path": "/v1/users/00000000-0000-0000-0000-000000000000"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

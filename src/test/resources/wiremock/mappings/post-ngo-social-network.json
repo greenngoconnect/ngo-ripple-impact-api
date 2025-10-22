@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/ngo-social-networks",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.ngo.id"
+      },
+      {
+        "matchesJsonPath": "$.linkedin"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json",
+      "Location": "/v1/ngo-social-networks/11111111-1111-1111-1111-111111111111"
+    },
+    "bodyFileName": "ngo-social-network-created.json"
+  }
+}

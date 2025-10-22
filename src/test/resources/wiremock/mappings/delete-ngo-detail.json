@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "DELETE",
+    "urlPattern": "/v1/ngo-details/[0-9a-fA-F-]+"
+  },
+  "response": {
+    "status": 204
+  }
+}

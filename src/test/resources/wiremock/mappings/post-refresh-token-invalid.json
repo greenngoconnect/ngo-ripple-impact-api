@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/auth/refresh-token",
+    "bodyPatterns": [
+      {
+        "equalToJson": "{\"refreshToken\":\"INVALID\"}",
+        "ignoreArrayOrder": true,
+        "ignoreExtraElements": true
+      }
+    ]
+  },
+  "response": {
+    "status": 401
+  }
+}

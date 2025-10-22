@@ -1,0 +1,23 @@
+{
+  "request": {
+    "method": "PUT",
+    "urlPattern": "/v1/users/[0-9a-fA-F-]+"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "{{request.pathSegments.[2]}}",
+      "name": "{{#jsonPath request.body '$.name'}}{{.}}{{/jsonPath}}",
+      "email": "{{#jsonPath request.body '$.email'}}{{.}}{{/jsonPath}}",
+      "password": "{{#jsonPath request.body '$.password'}}{{.}}{{/jsonPath}}",
+      "role": "{{#jsonPath request.body '$.role'}}{{.}}{{/jsonPath}}",
+      "consentAccepted": "{{#jsonPath request.body '$.consentAccepted'}}{{.}}{{/jsonPath}}"
+    },
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

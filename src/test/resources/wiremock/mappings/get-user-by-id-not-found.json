@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/v1/auth/user/00000000-0000-0000-0000-000000000000"
+  },
+  "response": {
+    "status": 204
+  }
+}

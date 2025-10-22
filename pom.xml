@@ -273,6 +273,35 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <includeProjectDependencies>true</includeProjectDependencies>
+                    <classpathScope>test</classpathScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-wiremock</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>wiremock.Run</mainClass>
+                            <arguments>
+                                <argument>--port</argument>
+                                <argument>9090</argument>
+                                <argument>--verbose</argument>
+                                <argument>--root-dir</argument>
+                                <argument>${project.basedir}/src/test/resources/wiremock</argument>
+                                <argument>--local-response-templating</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

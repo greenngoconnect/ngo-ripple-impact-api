@@ -1,0 +1,14 @@
+{
+  "id": "11111111-1111-1111-1111-111111111111",
+  "ngo": {
+    "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+    "name": "Instituto Verde Futuro"
+  },
+  "responsibleName": "Maria Silva",
+  "responsibleEmail": "maria@verdefuturo.org",
+  "responsiblePhone": "+55 34 99999-9999",
+  "address": "Rua das Flores, 123 - Uberlândia/MG",
+  "mission": "Promover educação ambiental e sustentabilidade.",
+  "vision": "Ser referência nacional em educação ambiental.",
+  "values": "Sustentabilidade, Ética, Comunidade"
+}

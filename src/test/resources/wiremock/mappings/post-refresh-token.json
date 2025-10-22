@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/v1/auth/refresh-token",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.refreshToken"
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json",
+      "Set-Cookie": "refresh_token=REFRESH_TOKEN_REFRESHED; HttpOnly; Secure; Path=/; SameSite=Strict"
+    },
+    "bodyFileName": "refresh-token-success.json"
+  }
+}

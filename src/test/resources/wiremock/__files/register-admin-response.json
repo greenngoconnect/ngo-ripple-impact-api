@@ -1,0 +1,7 @@
+{
+  "id": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+  "name": "Admin User",
+  "email": "admin@greenngo.org",
+  "role": "ADMIN",
+  "consentAccepted": true
+}
